@@ -7,6 +7,7 @@ use App\Repository\CustomerRepository;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -17,6 +18,11 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  * @ORM\Entity(repositoryClass=CustomerRepository::class)
  * @ORM\HasLifecycleCallbacks
  * @ApiResource(
+ *  collectionOperations={"GET"={"path"="/clients"}, "POST"},
+ *  itemOperations={"GET"={"path"="/client/{id}"}, "PUT", "DELETE"},
+ *  subresourceOperations={
+ *      "invoices_get_subresource"={"method"="GET","path"="/client/{id}/invoices/"}
+ *  },
  *  normalizationContext={"groups"={"customers_read"}}
  * ) 
  * @ApiFilter(SearchFilter::class, properties={"firstName":"partial","lastName":"partial","company":"partial"})
@@ -58,6 +64,7 @@ class Customer
     /**
      * @ORM\OneToMany(targetEntity=Invoice::class, mappedBy="customer")
      * @Groups({"customers_read"})
+     * @ApiSubresource
      */
     private $invoices;
 
