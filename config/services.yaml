@@ -33,3 +33,6 @@ services:
     # Utilise mon PatchedDateTimeNormalizer pour la validation Invoice::sentAt
     App\Serializer\PatchedDateTimeNormalizer:
         tags: [serializer.normalizer]
+    App\Events\JwtCreatedSubscriber:
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: updateJwtData }
