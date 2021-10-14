@@ -25,11 +25,11 @@ const Navbar = ({ history }) => {
                     </li>
                 </ul>
                 <ul className="navbar-nav ml-auto">
-                    <li className="nav-item">
-                        <a className="btn btn-outline-primary" href="#">Inscription</a>
+                    <li className="nav-item mx-1">
+                        <a className="btn btn-outline-primary btn-sm" href="#">Inscription</a>
                     </li> 
-                    <li className="nav-item">
-                        <a className="btn btn-outline-secondary" href="#">Connexion</a>
+                    <li className="nav-item mx-1">
+                        <a className="btn btn-outline-secondary btn-sm" href="#">Connexion</a>
                     </li> 
                 </ul>
             </div>
