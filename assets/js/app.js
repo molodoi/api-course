@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import { HashRouter, Route, Switch, withRouter } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import HomePage from "./pages/HomePage";
+import CustomersPage from "./pages/CustomersPage";
 
 // any CSS you import will output into a single css file (app.css in this case)
 import '../css/app.css';
-import Navbar from "./components/Navbar";
-import HomePage from "./pages/HomePage";
-
-// start the Stimulus application
-// import './bootstrap';
-console.log('Hello World!!!');
 
 const App = () => {
+
     return (
-        <>
+        <HashRouter>
             <Navbar />
-            <div className="container pt-5">
-                <HomePage />
-            </div>
-        </>
+            <main className="container pt-5">
+                <Switch>
+                    <Route path="/customers" component={CustomersPage} />
+                    <Route path="/" component={HomePage} />
+                </Switch>
+            </main>
+        </HashRouter>
     );
 };
 
