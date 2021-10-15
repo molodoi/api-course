@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Pagination from "../components/Pagination";
 import CustomersAPI from "../services/customersAPI";
-import { Link } from "react-router-dom";
 
 const CustomersPage = props => {  
     const [customers, setCustomers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(true);
+    const itemsPerPage = 13;
+
     // Permet d'aller récupérer les customers
     const fetchCustomers = async () => {
         try {
@@ -45,7 +46,6 @@ const CustomersPage = props => {
         setCurrentPage(1);
     };
 
-    const itemsPerPage = 13;
 
     // Filtrage des customers en fonction de la recherche
     const filteredCustomers = customers.filter(
@@ -102,7 +102,9 @@ const CustomersPage = props => {
                             {customer.id}
                         </td>
                         <td>
-                            {customer.firstName} {customer.lastName}
+                            <a href="#">
+                                {customer.firstName} {customer.lastName}
+                            </a>
                         </td>
                         <td>
                             {customer.email}
@@ -111,7 +113,7 @@ const CustomersPage = props => {
                             {customer.company}
                         </td>
                         <td className="text-center">
-                            <span className="badge badge-primary">
+                            <span className="badge rounded-pill bg-primary">
                                 {customer.invoices.length}
                             </span>
                         </td>

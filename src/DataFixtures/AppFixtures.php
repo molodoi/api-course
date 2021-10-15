@@ -39,7 +39,7 @@ class AppFixtures extends Fixture
 
             $manager->persist($user);
 
-            for($c = 0; $c < 30 ; $c++){
+            for($c = 0; $c < 10 ; $c++){
                 $customer = new Customer();
                 $customer->setFirstName($faker->firstName())
                     ->setLastName($faker->lastName)
@@ -49,7 +49,7 @@ class AppFixtures extends Fixture
 
                 $manager->persist($customer);
 
-                for($i=0; $i< mt_rand(3,10); $i++) {
+                for($i=0; $i< mt_rand(1,3); $i++) {
                     $invoice = new Invoice();
                     $invoice->setAmount($faker->randomFloat(2,2))
                             ->setSentAt($faker->dateTimeBetween('-6 months'))

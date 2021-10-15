@@ -21,7 +21,9 @@ const Navbar = ({ history }) => {
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Factures</a>
+                        <NavLink className="nav-link" to="/invoices">
+                            Factures
+                        </NavLink>
                     </li>
                 </ul>
                 <ul className="navbar-nav ml-auto">
