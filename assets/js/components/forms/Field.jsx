@@ -10,7 +10,7 @@ const Field = ({
   error = ""
 }) => (
   <div className="form-group">
-    <label htmlFor={name}>{label}</label>
+    <label htmlFor={name} className="form-label mt-2">{label}</label>
     <input
       value={value}
       onChange={onChange}
