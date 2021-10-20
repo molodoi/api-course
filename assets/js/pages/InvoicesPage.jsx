@@ -2,6 +2,7 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import Pagination from "../components/Pagination";
 import InvoicesAPI from "../services/invoicesAPI";
+import { Link } from "react-router-dom";
 
 const STATUS_CLASSES = {
     PAID: "success",
@@ -81,6 +82,12 @@ const InvoicesPage = (props) => {
 
     return (
         <>
+            <div className="d-flex justify-content-between align-items-center">
+                <h1>Liste des factures</h1>
+                <Link className="btn btn-sm btn-primary" to="/invoices/new">
+                    Créer une facture
+                </Link>
+            </div>
             <div className="form-group">
                 <input
                     type="text"
@@ -119,9 +126,9 @@ const InvoicesPage = (props) => {
                                 {invoice.chrono}
                             </td>
                             <td>
-                                <a href="#">
+                                <Link to={"/customers/" + invoice.customer.id}>
                                     {invoice.customer.firstName} {invoice.customer.lastName}
-                                </a>
+                                </Link>
                             </td>
                             <td className="text-center">
                                 {formatDate(invoice.sentAt)}
@@ -134,10 +141,13 @@ const InvoicesPage = (props) => {
                             <td className="text-center">
                                 {invoice.amount.toLocaleString()} €
                             </td>
-                            <td className="float-end">                            
-                                <a href="#" className="btn btn-sm btn-danger mx-2">
+                            <td className="d-flex justify-content-end">                            
+                                <Link
+                                    to={"/invoices/" + invoice.id}
+                                    className="btn btn-sm btn-primary mx-2"
+                                >
                                     Editer
-                                </a>
+                                </Link>
                                 <button
                                     className="btn btn-sm btn-outline-danger"
                                     onClick={() => handleDelete(invoice.id)}
