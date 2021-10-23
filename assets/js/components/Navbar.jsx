@@ -40,7 +40,9 @@ const Navbar = ({ history }) => {
                         {(!isAuthenticated && (
                             <>
                                 <li className="nav-item mx-1">
-                                    <a className="btn btn-outline-primary btn-sm" href="#">Inscription</a>
+                                    <NavLink to="/register" className="btn btn-outline-primary btn-sm">
+                                        Inscription
+                                    </NavLink>
                                 </li> 
                                 <li className="nav-item mx-1">
                                     <NavLink to="/login" className="btn btn-outline-secondary btn-sm">
