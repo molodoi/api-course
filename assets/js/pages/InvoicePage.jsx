@@ -4,6 +4,7 @@ import Select from "../components/forms/Select";
 import { Link } from "react-router-dom";
 import CustomersAPI from "../services/customersAPI";
 import InvoicesAPI from "../services/invoicesAPI";
+import { toast } from "react-toastify";
 
 const InvoicePage = ({ history, match }) => {
     const { id = "new" } = match.params;
@@ -48,6 +49,7 @@ const InvoicePage = ({ history, match }) => {
             setInvoice({ amount, status, customer: customer.id });
             setLoading(false);
         } catch (error) {
+            toast.error("Impossible de charger la facture demandée");
             history.replace("/invoices");
         }
     };
@@ -56,7 +58,7 @@ const InvoicePage = ({ history, match }) => {
     useEffect(() => {
         if (id !== "new") {
             setEditing(true);
-            fetchInvoice(id);
+            setTimeout(() => fetchInvoice(id), 10);
         }
     }, [id]);
 
@@ -73,8 +75,10 @@ const InvoicePage = ({ history, match }) => {
             setErrors({});
             if (editing) {
                 await InvoicesAPI.update(id, invoice);
+                toast.success("La facture a bien été modifiée");
             } else {
                 await InvoicesAPI.create(invoice);
+                toast.success("La facture a bien été enregistrée");
                 history.replace("/invoices");
             }
         } catch ({ response }) {
@@ -85,6 +89,7 @@ const InvoicePage = ({ history, match }) => {
                     apiErrors[propertyPath] = message;
                 });
                 setErrors(apiErrors);
+                toast.error("Il y a des erreurs dans votre formulaire !");
             }
         }
     };
