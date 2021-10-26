@@ -3,6 +3,7 @@ import Field from "./../components/forms/Field";
 import { Link } from "react-router-dom";
 import CustomersAPI from "../services/customersAPI";
 import { toast } from "react-toastify";
+import FormContentLoader from "../components/loaders/FormContentLoader";
 
 const CustomerPage = ({ match, history }) => {
     const { id = "new" } = match.params;    
@@ -81,7 +82,7 @@ const CustomerPage = ({ match, history }) => {
     return (
         <>
             {(!editing && <h1>Création d'un client</h1>) || (<h1>Modification du client</h1>)}
-            
+            {loading && <FormContentLoader />}
             {!loading && (
                 <form onSubmit={handleSubmit}>
                     <Field

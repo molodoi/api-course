@@ -60,8 +60,8 @@ const LoginPage = ({ history }) => {
                 />
 
                 <div className="form-group">
-                    <button type="submit" className="btn btn-success mt-3">
-                        Je me connecte
+                    <button type="submit" className="btn btn-outline-primary mt-3">
+                        Me connecter
                     </button>
                 </div>
             </form>

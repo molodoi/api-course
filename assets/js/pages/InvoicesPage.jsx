@@ -4,6 +4,7 @@ import Pagination from "../components/Pagination";
 import InvoicesAPI from "../services/invoicesAPI";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import TableLoader from "../components/loaders/TableLoader";
 
 const STATUS_CLASSES = {
     PAID: "success",
@@ -85,9 +86,9 @@ const InvoicesPage = (props) => {
 
     return (
         <>
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="d-flex justify-content-between align-items-center mb-3">
                 <h1>Liste des factures</h1>
-                <Link className="btn btn-sm btn-primary" to="/invoices/new">
+                <Link className="btn btn-sm btn-outline-primary" to="/invoices/new">
                     Créer une facture
                 </Link>
             </div>
@@ -100,28 +101,19 @@ const InvoicesPage = (props) => {
                     placeholder="Rechercher ..."
                 />
             </div>
-
-            <table className="table table-hover mt-4">
-                <thead>
-                    <tr>
-                        <th>Numéro</th>
-                        <th>Client</th>
-                        <th className="text-center">Date d'envoi</th>
-                        <th className="text-center">Statut</th>
-                        <th className="text-center">Montant</th>
-                        <th />
-                    </tr>
-                </thead>
-                {loading && (
-                    <tbody>
+            {loading && <TableLoader />}
+            {!loading && (
+                <table className="table table-hover mt-4">
+                    <thead>
                         <tr>
-                            <td colSpan="6">
-                                Chargement.. 
-                            </td>
+                            <th>Numéro</th>
+                            <th>Client</th>
+                            <th className="text-center">Date d'envoi</th>
+                            <th className="text-center">Statut</th>
+                            <th className="text-center">Montant</th>
+                            <th />
                         </tr>
-                    </tbody>
-                )}
-                {!loading && (
+                    </thead>                
                     <tbody>
                         {paginatedInvoices.map(invoice => (
                         <tr key={invoice.id}>
@@ -161,8 +153,8 @@ const InvoicesPage = (props) => {
                         </tr>
                         ))}
                     </tbody>
-                )}
-            </table>
+                </table>
+            )}
 
             <Pagination
                 currentPage={currentPage}

@@ -3,6 +3,7 @@ import Pagination from "../components/Pagination";
 import CustomersAPI from "../services/customersAPI";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import TableLoader from "../components/loaders/TableLoader";
 
 const CustomersPage = props => {  
     const [customers, setCustomers] = useState([]);
@@ -68,9 +69,9 @@ const CustomersPage = props => {
     );
 
     return <>
-        <div className="mb-3 d-flex justify-content-between align-items-center">
+        <div className="d-flex justify-content-between align-items-center mb-3">
             <h1>Liste des clients</h1>
-            <Link to="/customers/new" className="btn btn-sm btn-primary">
+            <Link to="/customers/new" className="btn btn-sm btn-outline-primary">
                 Créer un client
             </Link>
         </div>
@@ -83,28 +84,22 @@ const CustomersPage = props => {
                 placeholder="Rechercher ..."
             />
         </div>
-        <table className="table table-hover mt-4">
-            <thead>
-                <tr>
-                    <th>Id.</th>
-                    <th>Client</th>
-                    <th>Email</th>
-                    <th>Entreprise</th>
-                    <th className="text-center">Factures</th>
-                    <th className="text-center">Montant total</th>
-                    <th />
-                </tr>
-            </thead>
-            {loading && (
-                <tbody>
+
+        {loading && <TableLoader />}
+        
+        {!loading && (
+            <table className="table table-hover mt-4">            
+                <thead>
                     <tr>
-                        <td colSpan="6">
-                            Chargement..
-                        </td>
+                        <th>Id.</th>
+                        <th>Client</th>
+                        <th>Email</th>
+                        <th>Entreprise</th>
+                        <th className="text-center">Factures</th>
+                        <th className="text-center">Montant total</th>
+                        <th />
                     </tr>
-                </tbody>
-            )}
-            {!loading && (
+                </thead>
                 <tbody>
                     {paginatedCustomers.map(customer => (
                     <tr key={customer.id}>
@@ -142,8 +137,8 @@ const CustomersPage = props => {
                     </tr>
                     ))}
                 </tbody>
-            )}
-        </table>
+            </table>
+        )}
         {itemsPerPage < filteredCustomers.length && (
             <Pagination
             currentPage={currentPage}

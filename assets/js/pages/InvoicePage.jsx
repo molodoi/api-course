@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import CustomersAPI from "../services/customersAPI";
 import InvoicesAPI from "../services/invoicesAPI";
 import { toast } from "react-toastify";
+import FormContentLoader from "../components/loaders/FormContentLoader";
 
 const InvoicePage = ({ history, match }) => {
     const { id = "new" } = match.params;
@@ -99,7 +100,7 @@ const InvoicePage = ({ history, match }) => {
             {(editing && <h1>Modification d'une facture</h1>) || (
                 <h1>Création d'une facture</h1>
             )}
-
+            {loading && <FormContentLoader />}
             {!loading && (
                 <form onSubmit={handleSubmit}>
                     <Field
