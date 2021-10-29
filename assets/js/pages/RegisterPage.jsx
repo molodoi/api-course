@@ -63,61 +63,67 @@ const RegisterPage = ({ history }) => {
 
     return (
         <>
-            <h1>Inscription</h1>
-            <form onSubmit={handleSubmit}>
-                <Field
-                    name="firstName"
-                    label="Prénom"
-                    placeholder="Votre joli prénom"
-                    error={errors.firstName}
-                    value={user.firstName}
-                    onChange={handleChange}
-                />
-                <Field
-                        name="lastName"
-                        label="Nom de famille"
-                        placeholder="Votre nom de famille"
-                        error={errors.lastName}
-                        value={user.lastName}
-                        onChange={handleChange}
-                />
-                <Field
-                    name="email"
-                    label="Adresse email"
-                    placeholder="Votre adresse email"
-                    type="email"
-                    error={errors.email}
-                    value={user.email}
-                    onChange={handleChange}
-                />
-                <Field
-                    name="password"
-                    label="Mot de passe"
-                    type="password"
-                    placeholder="Votre mot de passe"
-                    error={errors.password}
-                    value={user.password}
-                    onChange={handleChange}
-                />
-                <Field
-                    name="passwordConfirm"
-                    label="Confirmation de mot de passe"
-                    type="password"
-                    placeholder="Confirmez votre super mot de passe"
-                    error={errors.passwordConfirm}
-                    value={user.passwordConfirm}
-                    onChange={handleChange}
-                />
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <h1>Inscription</h1>
+                        <form onSubmit={handleSubmit}>
+                            <Field
+                                name="firstName"
+                                label="Prénom"
+                                placeholder="Votre joli prénom"
+                                error={errors.firstName}
+                                value={user.firstName}
+                                onChange={handleChange}
+                            />
+                            <Field
+                                    name="lastName"
+                                    label="Nom de famille"
+                                    placeholder="Votre nom de famille"
+                                    error={errors.lastName}
+                                    value={user.lastName}
+                                    onChange={handleChange}
+                            />
+                            <Field
+                                name="email"
+                                label="Adresse email"
+                                placeholder="Votre adresse email"
+                                type="email"
+                                error={errors.email}
+                                value={user.email}
+                                onChange={handleChange}
+                            />
+                            <Field
+                                name="password"
+                                label="Mot de passe"
+                                type="password"
+                                placeholder="Votre mot de passe"
+                                error={errors.password}
+                                value={user.password}
+                                onChange={handleChange}
+                            />
+                            <Field
+                                name="passwordConfirm"
+                                label="Confirmation de mot de passe"
+                                type="password"
+                                placeholder="Confirmez votre super mot de passe"
+                                error={errors.passwordConfirm}
+                                value={user.passwordConfirm}
+                                onChange={handleChange}
+                            />
 
-                <div className="form-group">
-                    <button type="submit" className="btn btn-success mt-3">
-                        Confirmation
-                    </button>
-                    <Link to="/login" className="btn btn-link mt-3 mx-2">
-                        J'ai déjà un compte
-                    </Link>
+                            <div className="form-group">
+                                <button type="submit" className="btn btn-success mt-3">
+                                    Confirmation
+                                </button>
+                                <Link to="/login" className="btn btn-link mt-3 mx-2">
+                                    J'ai déjà un compte
+                                </Link>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </form>
+            </div>
         </>
     );
 };

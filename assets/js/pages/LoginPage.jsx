@@ -39,32 +39,38 @@ const LoginPage = ({ history }) => {
 
     return (
         <>
-            <h1>Connexion à l'application</h1>
-            <form onSubmit={handleSubmit}>
-                <Field
-                    label="Adresse email"
-                    name="username"
-                    value={credentials.username}
-                    onChange={handleChange}
-                    placeholder="Adresse email de connexion"
-                    error={error}
-                />
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <h1>Connexion à l'application</h1>
+                        <form onSubmit={handleSubmit}>
+                            <Field
+                                label="Adresse email"
+                                name="username"
+                                value={credentials.username}
+                                onChange={handleChange}
+                                placeholder="Adresse email de connexion"
+                                error={error}
+                            />
 
-                <Field
-                    name="password"
-                    label="Mot de passe"
-                    value={credentials.password}
-                    onChange={handleChange}
-                    type="password"
-                    error=""
-                />
+                            <Field
+                                name="password"
+                                label="Mot de passe"
+                                value={credentials.password}
+                                onChange={handleChange}
+                                type="password"
+                                error=""
+                            />
 
-                <div className="form-group">
-                    <button type="submit" className="btn btn-outline-primary mt-3">
-                        Me connecter
-                    </button>
+                            <div className="form-group">
+                                <button type="submit" className="btn btn-outline-primary mt-3">
+                                    Me connecter
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </form>
+            </div>
         </>
     );
 };

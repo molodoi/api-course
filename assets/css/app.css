@@ -1,3 +1,37 @@
 body {
     background-color: #FFF;
+    font-size: 1.1rem;
+}
+
+
+.form-control{
+    box-shadow: none;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #378dfc;
+    border-color: #378dfc;
+}
+
+.pagination{
+    box-shadow: none;
+}
+
+.logos{
+    margin-top: 2rem;
+    height: 350px;
+}
+@media (max-width: 991.98px) {
+    .navbar-nav{
+        text-align: center;
+    }
+    .navbar-nav .btn{
+        display: block;
+        width: 100%;
+        border-radius: 0rem;
+        font-size: 1.1rem;
+        box-shadow: none;
+    }
 }

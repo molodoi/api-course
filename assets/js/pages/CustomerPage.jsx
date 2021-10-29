@@ -81,53 +81,65 @@ const CustomerPage = ({ match, history }) => {
 
     return (
         <>
-            {(!editing && <h1>Création d'un client</h1>) || (<h1>Modification du client</h1>)}
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        {(!editing && <h1>Création d'un client</h1>) || (<h1>Modification du client</h1>)}
+                    </div>
+                </div>
+            </div>
             {loading && <FormContentLoader />}
             {!loading && (
-                <form onSubmit={handleSubmit}>
-                    <Field
-                        name="lastName"
-                        label="Nom de famille"
-                        placeholder="Nom de famille du client"
-                        value={customer.lastName}
-                        onChange={handleChange}
-                        error={errors.lastName}
-                    />
-                    <Field
-                        name="firstName"
-                        label="Prénom"
-                        placeholder="Prénom du client"
-                        value={customer.firstName}
-                        onChange={handleChange}
-                        error={errors.firstName}
-                    />
-                    <Field
-                        name="email"
-                        label="Email"
-                        placeholder="Adresse email du client"
-                        type="email"
-                        value={customer.email}
-                        onChange={handleChange}
-                        error={errors.email}
-                    />
-                    <Field
-                        name="company"
-                        label="Entreprise"
-                        placeholder="Entreprise du client"
-                        value={customer.company}
-                        onChange={handleChange}
-                        error={errors.company}
-                    />
+                <div className="container">
+                    <div className="row">
+                        <div className="col">
+                            <form onSubmit={handleSubmit}>
+                                <Field
+                                    name="lastName"
+                                    label="Nom de famille"
+                                    placeholder="Nom de famille du client"
+                                    value={customer.lastName}
+                                    onChange={handleChange}
+                                    error={errors.lastName}
+                                />
+                                <Field
+                                    name="firstName"
+                                    label="Prénom"
+                                    placeholder="Prénom du client"
+                                    value={customer.firstName}
+                                    onChange={handleChange}
+                                    error={errors.firstName}
+                                />
+                                <Field
+                                    name="email"
+                                    label="Email"
+                                    placeholder="Adresse email du client"
+                                    type="email"
+                                    value={customer.email}
+                                    onChange={handleChange}
+                                    error={errors.email}
+                                />
+                                <Field
+                                    name="company"
+                                    label="Entreprise"
+                                    placeholder="Entreprise du client"
+                                    value={customer.company}
+                                    onChange={handleChange}
+                                    error={errors.company}
+                                />
 
-                    <div className="form-group">
-                        <button type="submit" className="btn btn-success mt-3">
-                            Enregistrer
-                        </button>
-                        <Link to="/customers" className="btn btn-link mt-3 mx-2">
-                            Retour à la liste
-                        </Link>
+                                <div className="form-group">
+                                    <button type="submit" className="btn btn-outline-primary mt-3">
+                                        Enregistrer
+                                    </button>
+                                    <Link to="/customers" className="btn btn-link mt-3 mx-2">
+                                        Retour à la liste des clients
+                                    </Link>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </form>
+                </div>
             )}
         </>
     );

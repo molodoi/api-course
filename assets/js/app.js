@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { HashRouter, Route, Switch, withRouter } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
 import AuthContext from "./contexts/AuthContext";
 import HomePage from "./pages/HomePage";
@@ -37,7 +38,7 @@ const App = () => {
         >
             <HashRouter>
                 <NavbarWithRouter />
-                <main className="container pt-5">
+                <main className="containe pt-5">
                     <Switch>
                         <Route path="/login" component={LoginPage} />
                         <Route path="/register" component={RegisterPage} />
@@ -48,6 +49,7 @@ const App = () => {
                         <Route path="/" component={HomePage} />
                     </Switch>
                 </main>
+                <Footer />
             </HashRouter>
             <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
         </AuthContext.Provider>

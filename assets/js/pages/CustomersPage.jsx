@@ -10,7 +10,7 @@ const CustomersPage = props => {
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(true);
-    const itemsPerPage = 13;
+    const itemsPerPage = 10;
 
     // Permet d'aller récupérer les customers
     const fetchCustomers = async () => {
@@ -69,75 +69,89 @@ const CustomersPage = props => {
     );
 
     return <>
-        <div className="d-flex justify-content-between align-items-center mb-3">
-            <h1>Liste des clients</h1>
-            <Link to="/customers/new" className="btn btn-sm btn-outline-primary">
-                Créer un client
-            </Link>
-        </div>
-        <div className="form-group">
-            <input
-                type="text"
-                onChange={handleSearch}
-                value={search}
-                className="form-control"
-                placeholder="Rechercher ..."
-            />
+        <div className="container">
+            <div className="row">
+                <div className="col">
+                    <div className="d-flex justify-content-between align-items-center mb-3">
+                        <h1>Liste des clients</h1>
+                        <Link to="/customers/new" className="btn btn-sm btn-outline-primary">
+                            Créer un client
+                        </Link>
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            onChange={handleSearch}
+                            value={search}
+                            className="form-control"
+                            placeholder="Rechercher ..."
+                        />
+                    </div>
+                </div>
+            </div>
         </div>
 
         {loading && <TableLoader />}
         
         {!loading && (
-            <table className="table table-hover mt-4">            
-                <thead>
-                    <tr>
-                        <th>Id.</th>
-                        <th>Client</th>
-                        <th>Email</th>
-                        <th>Entreprise</th>
-                        <th className="text-center">Factures</th>
-                        <th className="text-center">Montant total</th>
-                        <th />
-                    </tr>
-                </thead>
-                <tbody>
-                    {paginatedCustomers.map(customer => (
-                    <tr key={customer.id}>
-                        <td>
-                            {customer.id}
-                        </td>
-                        <td>
-                            <Link to={"/customers/" + customer.id}>
-                                {customer.firstName} {customer.lastName}
-                            </Link>
-                        </td>
-                        <td>
-                            {customer.email}
-                        </td>
-                        <td>
-                            {customer.company}
-                        </td>
-                        <td className="text-center">
-                            <span className="badge rounded-pill bg-primary">
-                                {customer.invoices.length}
-                            </span>
-                        </td>
-                        <td className="text-center">
-                            {customer.totalAmount.toLocaleString()} €
-                        </td>
-                        <td>
-                            <button
-                                onClick={() => handleDelete(customer.id)}
-                                disabled={customer.invoices.length > 0}
-                                className="btn btn-sm btn-danger"
-                            >
-                                Supprimer
-                            </button>
-                        </td>
-                    </tr>
-                    ))}
-                </tbody>
-            </table>
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <div className="table-responsive">
+                            <table className="table table-hover mt-4">            
+                                <thead>
+                                    <tr>
+                                        <th>Id.</th>
+                                        <th>Client</th>
+                                        <th>Email</th>
+                                        <th>Entreprise</th>
+                                        <th className="text-center">Factures</th>
+                                        <th className="text-center">Montant total</th>
+                                        <th />
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {paginatedCustomers.map(customer => (
+                                    <tr key={customer.id}>
+                                        <td>
+                                            {customer.id}
+                                        </td>
+                                        <td>
+                                            <Link to={"/customers/" + customer.id}>
+                                                {customer.firstName} {customer.lastName}
+                                            </Link>
+                                        </td>
+                                        <td>
+                                            {customer.email}
+                                        </td>
+                                        <td>
+                                            {customer.company}
+                                        </td>
+                                        <td className="text-center">
+                                            <span className="badge rounded-pill bg-primary">
+                                                {customer.invoices.length}
+                                            </span>
+                                        </td>
+                                        <td className="text-center">
+                                            {customer.totalAmount.toLocaleString()} €
+                                        </td>
+                                        <td>
+                                            <button
+                                                onClick={() => handleDelete(customer.id)}
+                                                disabled={customer.invoices.length > 0}
+                                                className="btn btn-sm btn-danger"
+                                            >
+                                                Supprimer
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         )}
         {itemsPerPage < filteredCustomers.length && (
             <Pagination

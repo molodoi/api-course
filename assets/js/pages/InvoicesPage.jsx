@@ -7,8 +7,8 @@ import { toast } from "react-toastify";
 import TableLoader from "../components/loaders/TableLoader";
 
 const STATUS_CLASSES = {
-    PAID: "success",
-    SENT: "primary",
+    PAID: "dark",
+    SENT: "info",
     CANCELLED: "danger"
 };
   
@@ -86,74 +86,88 @@ const InvoicesPage = (props) => {
 
     return (
         <>
-            <div className="d-flex justify-content-between align-items-center mb-3">
-                <h1>Liste des factures</h1>
-                <Link className="btn btn-sm btn-outline-primary" to="/invoices/new">
-                    Créer une facture
-                </Link>
-            </div>
-            <div className="form-group">
-                <input
-                    type="text"
-                    onChange={handleSearch}
-                    value={search}
-                    className="form-control"
-                    placeholder="Rechercher ..."
-                />
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <div className="d-flex justify-content-between align-items-center mb-3">
+                            <h1>Liste des factures</h1>
+                            <Link className="btn btn-sm btn-outline-primary" to="/invoices/new">
+                                Créer une facture
+                            </Link>
+                        </div>
+                        <div className="form-group">
+                            <input
+                                type="text"
+                                onChange={handleSearch}
+                                value={search}
+                                className="form-control"
+                                placeholder="Rechercher ..."
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
             {loading && <TableLoader />}
             {!loading && (
-                <table className="table table-hover mt-4">
-                    <thead>
-                        <tr>
-                            <th>Numéro</th>
-                            <th>Client</th>
-                            <th className="text-center">Date d'envoi</th>
-                            <th className="text-center">Statut</th>
-                            <th className="text-center">Montant</th>
-                            <th />
-                        </tr>
-                    </thead>                
-                    <tbody>
-                        {paginatedInvoices.map(invoice => (
-                        <tr key={invoice.id}>
-                            <td>
-                                {invoice.chrono}
-                            </td>
-                            <td>
-                                <Link to={"/customers/" + invoice.customer.id}>
-                                    {invoice.customer.firstName} {invoice.customer.lastName}
-                                </Link>
-                            </td>
-                            <td className="text-center">
-                                {formatDate(invoice.sentAt)}
-                            </td>
-                            <td className="text-center">
-                                <span className={"badge rounded-pill bg-" + STATUS_CLASSES[invoice.status]} >
-                                    {STATUS_LABELS[invoice.status]}
-                                </span>
-                            </td>
-                            <td className="text-center">
-                                {invoice.amount.toLocaleString()} €
-                            </td>
-                            <td className="d-flex justify-content-end">                            
-                                <Link
-                                    to={"/invoices/" + invoice.id}
-                                    className="btn btn-sm btn-primary mx-2"
-                                >
-                                    Editer
-                                </Link>
-                                <button
-                                    className="btn btn-sm btn-outline-danger"
-                                    onClick={() => handleDelete(invoice.id)}
-                                >
-                                    Supprimer
-                                </button>
-                            </td>
-                        </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <div className="container">
+                    <div className="row">
+                        <div className="col">
+                            <div className="table-responsive">
+                                <table className="table table-hover mt-4">
+                                    <thead>
+                                        <tr>
+                                            <th>Numéro</th>
+                                            <th>Client</th>
+                                            <th className="text-center">Date d'envoi</th>
+                                            <th className="text-center">Statut</th>
+                                            <th className="text-center">Montant</th>
+                                            <th />
+                                        </tr>
+                                    </thead>                
+                                    <tbody>
+                                        {paginatedInvoices.map(invoice => (
+                                        <tr key={invoice.id}>
+                                            <td>
+                                                {invoice.chrono}
+                                            </td>
+                                            <td>
+                                                <Link to={"/customers/" + invoice.customer.id}>
+                                                    {invoice.customer.firstName} {invoice.customer.lastName}
+                                                </Link>
+                                            </td>
+                                            <td className="text-center">
+                                                {formatDate(invoice.sentAt)}
+                                            </td>
+                                            <td className="text-center">
+                                                <span className={"badge rounded-pill bg-" + STATUS_CLASSES[invoice.status]} >
+                                                    {STATUS_LABELS[invoice.status]}
+                                                </span>
+                                            </td>
+                                            <td className="text-center">
+                                                {invoice.amount.toLocaleString()} €
+                                            </td>
+                                            <td className="d-flex justify-content-end">                            
+                                                <Link
+                                                    to={"/invoices/" + invoice.id}
+                                                    className="btn btn-sm btn-primary mx-2"
+                                                >
+                                                    Editer
+                                                </Link>
+                                                <button
+                                                    className="btn btn-sm btn-outline-danger"
+                                                    onClick={() => handleDelete(invoice.id)}
+                                                >
+                                                    Supprimer
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             )}
 
             <Pagination

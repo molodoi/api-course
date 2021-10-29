@@ -97,57 +97,69 @@ const InvoicePage = ({ history, match }) => {
 
     return (
         <>
-            {(editing && <h1>Modification d'une facture</h1>) || (
-                <h1>Création d'une facture</h1>
-            )}
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        {(editing && <h1>Modification d'une facture</h1>) || (
+                            <h1>Création d'une facture</h1>
+                        )}
+                    </div>
+                </div>
+            </div>
             {loading && <FormContentLoader />}
             {!loading && (
-                <form onSubmit={handleSubmit}>
-                    <Field
-                        name="amount"
-                        type="number"
-                        placeholder="Montant de la facture"
-                        label="Montant"
-                        onChange={handleChange}
-                        value={invoice.amount}
-                        error={errors.amount}
-                    />
+                <div className="container">
+                    <div className="row">
+                        <div className="col">
+                            <form onSubmit={handleSubmit}>
+                                <Field
+                                    name="amount"
+                                    type="number"
+                                    placeholder="Montant de la facture"
+                                    label="Montant"
+                                    onChange={handleChange}
+                                    value={invoice.amount}
+                                    error={errors.amount}
+                                />
 
-                    <Select
-                        name="customer"
-                        label="Client"
-                        value={invoice.customer}
-                        error={errors.customer}
-                        onChange={handleChange}
-                    >
-                        {customers.map(customer => (
-                            <option key={customer.id} value={customer.id}>
-                                {customer.firstName} {customer.lastName}
-                            </option>
-                        ))}
-                    </Select>
+                                <Select
+                                    name="customer"
+                                    label="Client"
+                                    value={invoice.customer}
+                                    error={errors.customer}
+                                    onChange={handleChange}
+                                >
+                                    {customers.map(customer => (
+                                        <option key={customer.id} value={customer.id}>
+                                            {customer.firstName} {customer.lastName}
+                                        </option>
+                                    ))}
+                                </Select>
 
-                    <Select
-                        name="status"
-                        label="Statut"
-                        value={invoice.status}
-                        error={errors.status}
-                        onChange={handleChange}
-                    >
-                        <option value="SENT">Envoyée</option>
-                        <option value="PAID">Payée</option>
-                        <option value="CANCELLED">Annulée</option>
-                    </Select>
+                                <Select
+                                    name="status"
+                                    label="Statut"
+                                    value={invoice.status}
+                                    error={errors.status}
+                                    onChange={handleChange}
+                                >
+                                    <option value="SENT">Envoyée</option>
+                                    <option value="PAID">Payée</option>
+                                    <option value="CANCELLED">Annulée</option>
+                                </Select>
 
-                    <div className="form-group">
-                        <button type="submit" className="btn btn-success mt-3">
-                            Enregistrer
-                        </button>
-                        <Link to="/invoices" className="btn btn-link mt-3 mx-2">
-                            Retour aux factures
-                        </Link>
+                                <div className="form-group">
+                                    <button type="submit" className="btn btn-outline-primary mt-3">
+                                        Enregistrer
+                                    </button>
+                                    <Link to="/invoices" className="btn btn-link mt-3 mx-2">
+                                        Retour aux factures
+                                    </Link>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </form>
+                </div>
             )}
         </>
     );

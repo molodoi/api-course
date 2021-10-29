@@ -10,37 +10,30 @@ const Pagination = ({ currentPage, itemsPerPage, length, onPageChanged }) => {
   }
 
   return (
-    <div>
-      <ul className="pagination">
-        <li className={"page-item" + (currentPage === 1 && " disabled")}>
-          <button
-            className="page-link"
-            onClick={() => onPageChanged(currentPage - 1)}
-          >
-            &laquo;
-          </button>
-        </li>
-        {pages.map(page => (
-          <li
-            key={page}
-            className={"page-item" + (currentPage === page && " active")}
-          >
-            <button className="page-link" onClick={() => onPageChanged(page)}>
-              {page}
-            </button>
-          </li>
-        ))}
-        <li
-          className={"page-item" + (currentPage === pagesCount && " disabled")}
-        >
-          <button
-            className="page-link"
-            onClick={() => onPageChanged(currentPage + 1)}
-          >
-            &raquo;
-          </button>
-        </li>
-      </ul>
+    <div className="container mb-5">
+        <div className="row">
+            <div className="col">
+                <ul className="pagination mt-2">
+                    <li className={"page-item" + (currentPage === 1 && " disabled")}>
+                    <button className="page-link" onClick={() => onPageChanged(currentPage - 1)}>
+                        &laquo;
+                    </button>
+                    </li>
+                    {pages.map(page => (
+                        <li key={page} className={"page-item" + (currentPage === page && " active")}>
+                            <button className="page-link" onClick={() => onPageChanged(page)}>
+                                {page}
+                            </button>
+                        </li>
+                    ))}
+                    <li className={"page-item" + (currentPage === pagesCount && " disabled")} >
+                        <button className="page-link" onClick={() => onPageChanged(currentPage + 1)} >
+                            &raquo;
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
   );
 };
